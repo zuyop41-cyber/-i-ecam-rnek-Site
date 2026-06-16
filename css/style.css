@@ -1,0 +1,206 @@
+/* ==========================================
+   1. MİNİMALİST DEĞİŞKENLER VE RESET
+   ========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg-main: #FDFDFD;
+    --text-dark: #111111;
+    --text-muted: #666666;
+    --accent-blue: #002F6C; /* Şişecam Kurumsal Dokunuş */
+    --accent-light: #E0E5EC;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    line-height: 1.7;
+    padding-top: 100px; /* Banner ve Header boşluğu */
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ==========================================
+   2. ZORUNLU ÜST UYARI BANDI (Hoca Kuralı)
+   ========================================== */
+.zorunlu-banner {
+    position: fixed; top: 0; left: 0; width: 100%; height: 20px;
+    background-color: #FF0000; color: #FFFFFF;
+    font-size: 11px; text-align: center; line-height: 20px;
+    z-index: 9999; font-weight: bold; letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   3. MİNİMAL HEADER & NAVİGASYON
+   ========================================== */
+header {
+    position: fixed; top: 20px; left: 0; width: 100%; height: 80px;
+    background-color: rgba(253, 253, 253, 0.95);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    z-index: 9998; border-bottom: 1px solid #F0F0F0;
+}
+
+.nav-container {
+    max-width: 1400px; margin: 0 auto; height: 100%;
+    display: flex; justify-content: space-between; align-items: center; padding: 0 40px;
+}
+
+.logo a {
+    font-size: 28px; font-weight: 900; letter-spacing: -1px; color: var(--text-dark);
+}
+
+.logo span { color: var(--accent-blue); }
+
+.nav-menu { display: flex; gap: 40px; }
+
+.nav-item a {
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease;
+}
+
+.nav-item a:hover, .nav-item a.active { color: var(--accent-blue); }
+
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { width: 30px; height: 2px; background-color: var(--text-dark); transition: 0.3s; }
+
+/* ==========================================
+   4. ASİMETRİK HERO ALANI (ANA SAYFA)
+   ========================================== */
+.hero {
+    max-width: 1400px; margin: 60px auto; padding: 0 40px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+}
+
+.hero-text { flex: 1; min-width: 300px; padding-right: 40px; }
+
+.hero-text h1 {
+    font-size: 5rem; font-weight: 900; line-height: 0.9; letter-spacing: -2px;
+    margin-bottom: 30px; text-transform: uppercase;
+}
+
+.hero-text p {
+    font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 500px;
+}
+
+/* Finansal Bant (BİST100 Vurgusu) */
+.ticker {
+    display: inline-flex; align-items: center; gap: 15px;
+    background: #F5F5F5; padding: 10px 20px; border-left: 4px solid var(--accent-blue);
+    font-size: 14px; font-weight: bold; margin-bottom: 40px;
+}
+.ticker-value { color: #2E7D32; } /* Yükseliş yeşili */
+
+.hero-image {
+    flex: 1; min-width: 300px; height: 600px;
+    background-color: var(--accent-light); 
+    background-image: url('../images/gorsel.jpg'); /* RESİM BAĞLANTISI BURAYA EKLENDİ */
+    background-size: cover; /* Resmi kutuya tam sığdırır */
+    background-position: center; /* Resmi ortalar */
+    position: relative;
+}
+
+/* ==========================================
+   5. ASİMETRİK İÇERİK BLOKLARI
+   ========================================== */
+.section-container { max-width: 1200px; margin: 120px auto; padding: 0 40px; }
+
+.section-title {
+    font-size: 3rem; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 60px; color: var(--text-dark); border-bottom: 2px solid var(--text-dark);
+    display: inline-block; padding-bottom: 10px;
+}
+
+/* İçerik Düzeni */
+.asym-grid {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 40px; align-items: center;
+}
+
+.asym-text { grid-column: 1 / 7; }
+.asym-box {
+    grid-column: 7 / 13; background: #F9F9F9; padding: 60px;
+    border-top: 5px solid var(--accent-blue);
+}
+.asym-box.reverse { grid-column: 1 / 7; }
+.asym-text.reverse { grid-column: 7 / 13; }
+
+.asym-text h3, .asym-box h3 { font-size: 2rem; margin-bottom: 20px; line-height: 1.2; }
+.asym-text p, .asym-box p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 15px; }
+
+/* ==========================================
+   6. MİNİMAL FORM TASARIMI
+   ========================================== */
+.form-wrapper { max-width: 700px; margin: 0 auto; }
+
+.form-group { margin-bottom: 30px; }
+
+.form-group label {
+    display: block; font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%; padding: 15px 0; background: transparent;
+    border: none; border-bottom: 1px solid #CCC;
+    font-family: inherit; font-size: 16px; transition: border-color 0.3s;
+}
+
+.form-control:focus { outline: none; border-bottom-color: var(--accent-blue); }
+
+.radio-group, .checkbox-group { display: flex; gap: 30px; margin-top: 10px; }
+.radio-group label, .checkbox-group label {
+    font-weight: normal; text-transform: none; font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; color: var(--text-muted);
+}
+
+.btn-submit {
+    display: inline-block; padding: 15px 40px; background-color: var(--text-dark);
+    color: #FFF; border: none; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; cursor: pointer; transition: background 0.3s;
+}
+
+.btn-submit:hover { background-color: var(--accent-blue); }
+
+/* ==========================================
+   7. GENİŞ VE TEMİZ FOOTER
+   ========================================== */
+footer {
+    background-color: #FAFAFA; border-top: 1px solid #EAEAEA;
+    padding: 80px 40px 40px 40px; margin-top: 100px;
+}
+
+.footer-container {
+    max-width: 1400px; margin: 0 auto; display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px;
+}
+
+.footer-box h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; }
+.footer-box p, .footer-box li { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; }
+.footer-box a:hover { color: var(--accent-blue); }
+
+.footer-bottom {
+    max-width: 1400px; margin: 60px auto 0 auto; padding-top: 30px;
+    border-top: 1px solid #EAEAEA; font-size: 12px; color: #999;
+    display: flex; justify-content: space-between;
+}
+
+/* ==========================================
+   8. RESPONSIVE KIRILMALAR
+   ========================================== */
+@media (max-width: 992px) {
+    .asym-text, .asym-box, .asym-text.reverse, .asym-box.reverse { grid-column: 1 / -1; }
+    .hero-text h1 { font-size: 3.5rem; }
+}
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-menu {
+        position: fixed; top: 100px; left: -100%; width: 100%; height: calc(100vh - 100px);
+        background: var(--bg-main); flex-direction: column; align-items: center;
+        justify-content: center; gap: 40px; transition: left 0.4s ease;
+    }
+    .nav-menu.active { left: 0; }
+    .hero-image { height: 400px; margin-top: 40px; }
+}
